@@ -1,0 +1,17 @@
+#tablero{
+    display: grid;
+    width: fit-content;
+
+}
+.casilla{
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active{
+    background-color: green;
+}
