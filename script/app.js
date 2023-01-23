@@ -1,8 +1,8 @@
 "use strict";
 import { generateUniqueCasilla } from "./ObjectCasilla.js";
 
-const filas = 4;
-const columnas = 3;
+const filas = 7;
+const columnas = 5;
 const Eltablero = document.querySelector("#tablero");
 
 //Creamos el tablero de juego
@@ -99,7 +99,7 @@ const cambiarDatosTablero = (posFil, posCol) => {
     //Cambiamos posiciones horizontales
     for(let  hj= -1; hj <=1; hj++){
         let posicionHorizontal= posCol - hj; // recorre posiciones horizontales
-        if(posicionHorizontal >= 0 && posicionHorizontal < filas && posicionHorizontal != posCol){
+        if(posicionHorizontal >= 0 && posicionHorizontal < columnas && posicionHorizontal != posCol){
             if(tablero[posFil][posicionHorizontal].valorCasilla === 1){
                 tablero[posFil][posicionHorizontal].valorCasilla = 0;
             }
