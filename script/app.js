@@ -1,8 +1,8 @@
 "use strict";
 import { generateUniqueCasilla } from "./ObjectCasilla.js";
 
-const filas = 3;
-const columnas = filas;
+const filas = 4;
+const columnas = 3;
 const Eltablero = document.querySelector("#tablero");
 
 //Creamos el tablero de juego
