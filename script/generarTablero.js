@@ -1,24 +1,35 @@
 import { generateUniqueCasilla } from "./ObjectCasilla.js";
 export {generarDefaultTablero};
 
-//Creamos el tablero de juego
-const generarDefaultTablero = (filas,columnas, map, Eltablero) => {
-    console.log(map)
+/**
+ * @param {*} Eltablero Elemento HTML de la aplicacion, sobre el se generará todo el componente de tablero 
+ * @param {*} map Array de 2 dimensiones, contiene los datos de cada casilla
+ * @returns devuelve un array de 2 dimensiones con un objeto DATA
+ */
 
+const generarDefaultTablero = (Eltablero, map) => {
+    const filas = map.filas;
+    const columnas = map.columnas;
+    const dataTablero = map.mapa
 var tablero = Array.from(Array(filas), () => new Array(columnas));
 let identificador = 0;
 for (let i = 0; i < filas; i++) { // valor i representa las filas
     for (let j = 0; j < columnas; j++) { //valor j representa las columnas
-        //creamos un objeto dentro de cada casilla:
-        let val = map[i][j];
-        const data = generateUniqueCasilla(identificador, i, j, val); //llamamos a la funcion para que nos genere un objeto de cada casilla
-        tablero[i][j] = data;
+        let val = dataTablero[i][j];
+        /**
+         * Genera un objeto - DATA - dentro de cada elemento del array.
+         * dicho objeto se compone de: ID, fila, columna, valor
+         */
+        const data = generateUniqueCasilla(identificador, i, j, val);
+        tablero[i][j] = data;  
         var cas = document.createElement("div");
         cas.className = "casilla";
         cas.id = identificador;
-        identificador++;
+        identificador++;  
         cas.textContent = `${tablero[i][j].valorCasilla}`;
         Eltablero.appendChild(cas);
+        //pintamos la casilla atendiendo al valor que tenga en su interior
+        drawCasillaData(data);
         //Arriba
         if (i == 0) {
             cas.style.borderTop = '4px solid black';
@@ -42,6 +53,21 @@ for (let i = 0; i < filas; i++) { // valor i representa las filas
 
 Eltablero.style.gridTemplateColumns = `repeat(${columnas}, auto)`;
 Eltablero.style.gridTemplateRows = `repeat(${filas}, auto)`;
-console.log(tablero)
 return tablero;
+}
+
+const drawCasillaData = (data) => {
+    let casilla = document.getElementById(`${data.idCasilla}`)
+    switch (data.valorCasilla) {
+        case 0:
+            
+            break;
+        case 1:
+            casilla.classList.add("active");
+            break;
+        case 2:
+            casilla.classList.add("motherblock");
+            break;
+
+    }
 }

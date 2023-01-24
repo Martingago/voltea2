@@ -11,7 +11,7 @@ const generateUniqueCasilla = (id, fil, col, val) => {
         /**
          * 0 valor VACIO
          * 1 valor COMPLETO
-         * 3 valor OBJETO INMOVIBLE
+         * 2 valor OBJETO INMOVIBLE
          */
     };
 
