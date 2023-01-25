@@ -1,7 +1,7 @@
 "use strict";
 export {tablero};
 import { generarDefaultTablero } from "./generarTablero.js";
-import { cambiarDatosTablero } from "./manipularTablero.js";
+import { limpiarTablero ,cambiarDatosTablero } from "./manipularTablero.js";
 
 //función asincrona, obtenemos el json con TODOS los mapas de la aplicación.
 const getData = async () =>  {
@@ -15,10 +15,13 @@ const getData = async () =>  {
   }
   
 let loadData = await getData();
-let lvlMap = 0;
+let lvlMap = 999;
+if(lvlMap >loadData.maps.length){
+    lvlMap = loadData.maps.length-1;
+}
 let mapaActual = loadData.maps[lvlMap];
-const filas = mapaActual.filas;
-const columnas = mapaActual.columnas;
+let filas = mapaActual.filas;
+let columnas = mapaActual.columnas;
 const Eltablero = document.querySelector("#tablero");
 
 /**
@@ -28,13 +31,11 @@ const Eltablero = document.querySelector("#tablero");
 
 var tablero = generarDefaultTablero(Eltablero, mapaActual);
 
-
-
+const clickTablero = () => {
 const casTablero = document.querySelectorAll(".casilla");
 casTablero.forEach(casilla => {
     casilla.addEventListener("click",
         () => {
-            console.log("a")
             let idTmp = casilla.id
             //devuelve el ID de la ficha que hace click el usuario. 
             //Este valor ID podemos buscarlo en el array para conocer su ubicacion
@@ -44,6 +45,10 @@ casTablero.forEach(casilla => {
         }
     )
 });
+
+}
+
+clickTablero()
 
 let posFil;
 let posCol;
@@ -74,30 +79,38 @@ const buscadorCasillaPorID = (id) => {
 }
 
 
-// const btnNext = document.querySelector(".btn-next-map");
-// const btnBack = document.querySelector(".btn-back-map");
-// const elTablero = document.querySelector("#tablero")
+const btnNext = document.querySelector(".btn-next-map");
+const btnBack = document.querySelector(".btn-back-map");
 
-// btnNext.addEventListener(
-//     "click",
-//     ()=> {
-//        lvlMap++;
-//        mapaActual = loadData.maps[lvlMap];
-//        limpiarTablero();
-//        tablero = generarDefaultTablero(elTablero, mapaActual);
-//     })
+btnNext.addEventListener(
+    "click",
+    ()=> {
+        if(lvlMap < loadData.maps.length -1){
+            limpiarTablero(Eltablero);
+            lvlMap++;
+            console.log(lvlMap)
+            mapaActual = loadData.maps[lvlMap];
+             filas = mapaActual.filas;
+             columnas = mapaActual.columnas;          
+            tablero = generarDefaultTablero(Eltablero, mapaActual);
+            clickTablero();
+        }
 
-//    btnBack.addEventListener(
-//     "click",
-//     ()=> {
-//         limpiarTablero();
-//         lvlMap--;
-//         mapaActual = loadData.maps[lvlMap];
+    })
+
+   btnBack.addEventListener(
+    "click",
+    ()=> {
+        if(lvlMap >0){
+            limpiarTablero(Eltablero);
+            lvlMap--;
+            mapaActual = loadData.maps[lvlMap];
+            filas = mapaActual.filas;
+            columnas = mapaActual.columnas;
+            tablero = generarDefaultTablero(Eltablero,mapaActual);
+            clickTablero()
+        }
         
-//         tablero = generarDefaultTablero(elTablero,mapaActual);
-//     }
-//    ) 
-
-
-    
+    }
+   ) 
     

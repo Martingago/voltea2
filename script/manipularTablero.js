@@ -1,6 +1,13 @@
 "use strict";
 import { tablero } from "./app.js";
-export { cambiarDatosTablero};
+export { limpiarTablero, cambiarDatosTablero};
+
+
+const limpiarTablero = (Eltablero) => {  
+    while(Eltablero.firstChild){
+        Eltablero.removeChild(Eltablero.firstChild);
+    }
+}
 
 
 const cambiarDatosTablero = (posFil, posCol, filas,columnas) => {
@@ -20,7 +27,6 @@ const cambiarDatosTablero = (posFil, posCol, filas,columnas) => {
         }
     }
 }
-
 
 //genera un nuevo valor a la casilla dependiendo de su estado actual
 const manipulateValorCasilla = (casilla) => {
