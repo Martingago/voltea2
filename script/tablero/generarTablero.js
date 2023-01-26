@@ -1,4 +1,5 @@
 import { generateUniqueCasilla } from "./ObjectCasilla.js";
+import { dataUserMovements } from "../app.js";
 export {generarDefaultTablero};
 
 /**
@@ -10,7 +11,10 @@ export {generarDefaultTablero};
 const generarDefaultTablero = (Eltablero, map) => {
     const filas = map.filas;
     const columnas = map.columnas;
-    const dataTablero = map.mapa
+    const dataTablero = map.mapa;
+    dataUserMovements.tamUserHistory = 0;
+    dataUserMovements.userMovements = [];
+    
 var tablero = Array.from(Array(filas), () => new Array(columnas));
 let identificador = 0;
 for (let i = 0; i < filas; i++) { // valor i representa las filas

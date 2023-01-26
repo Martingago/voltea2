@@ -1,5 +1,5 @@
 "use strict";
-import { tablero } from "./app.js";
+import { tablero } from "../app.js";
 export { limpiarTablero, cambiarDatosTablero};
 
 

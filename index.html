@@ -10,8 +10,17 @@
 <body>
     <div id="tablero"></div>
 
-    <button class="btn-back-map">Anterior</button>
-    <button class="btn-next-map">Siguiente</button>
+    <div class="section-btn-mapa">
+        <button class="btn-back-map">Anterior</button>
+        <button class="btn-next-map">Siguiente</button>
+    </div>
+
+    <!-- botones de los movimientos que ha hecho el usuario -->
+    <div class="section-btn-posicion">
+        <button class="btn-prev-mov">volver</button>
+        <button class="btn-next-move">siguiente</button>
+    </div>
 </body>
 <script type="module" src="/script/app.js" defer></script>
+<script type="module" src="/script/tablero/historyMovementsUser.js" defer></script>
 </html>
