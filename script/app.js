@@ -1,7 +1,8 @@
 "use strict";
-export { tablero, dataUserMovements, filas, columnas};
+export { tablero, dataUserMovements, filas, columnas };
 import { generarDefaultTablero } from "./tablero/generarTablero.js";
 import { limpiarTablero, cambiarDatosTablero } from "./tablero/manipularTablero.js";
+import { bloquearBotonesHistorial, comprobarSobrescribirDatosHistoricos } from "./tablero/historyMovementsUser.js";
 
 //función asincrona, obtenemos el json con TODOS los mapas de la aplicación.
 const getData = async () => {
@@ -27,7 +28,7 @@ let columnas = mapaActual.columnas;
 var dataUserMovements = {
     userMovements: [], //historial de coordenadas que el usuario clickea
     tamUserHistory: 0, //tamaño del historial || numero de movimientos que ha hecho
-    newUserPosition: 0, // posicion del historial en la que nos queremos posicionar
+    newUserPosition: -1, // posicion del historial en la que nos queremos posicionar
 };
 
 /**
@@ -42,6 +43,7 @@ var tablero = generarDefaultTablero(Eltablero, mapaActual);
  * Detecta los clicks del usuario en el tablero
  * Carga informacion del historial de movimientos en dataUserMovements
  */
+
 const clickTablero = () => {
     const casTablero = document.querySelectorAll(".casilla");
     casTablero.forEach(casilla => {
@@ -50,12 +52,18 @@ const clickTablero = () => {
                 let idTmp = casilla.id
                 //devuelve el ID de la ficha que hace click el usuario. 
                 //Este valor ID podemos buscarlo en el array para conocer su ubicacion
+                
+
                 buscadorCasillaPorID(idTmp);
-                if (vCasilla != 2)
+                if (vCasilla != 2) {
                     dataUserMovements.userMovements.push([posFil, posCol]);
                     dataUserMovements.tamUserHistory = dataUserMovements.userMovements.length;
                     dataUserMovements.newUserPosition++;
+                    bloquearBotonesHistorial();
                     cambiarDatosTablero(posFil, posCol, filas, columnas);
+                    comprobarSobrescribirDatosHistoricos();
+                    console.log(dataUserMovements.userMovements,  "posicion del usuario:" ,dataUserMovements.newUserPosition);
+                }
             }
         )
     });

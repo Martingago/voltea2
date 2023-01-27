@@ -1,5 +1,6 @@
 import { generateUniqueCasilla } from "./ObjectCasilla.js";
 import { dataUserMovements } from "../app.js";
+import { bloquearBotonesHistorial } from "./historyMovementsUser.js";
 export {generarDefaultTablero};
 
 /**
@@ -14,6 +15,8 @@ const generarDefaultTablero = (Eltablero, map) => {
     const dataTablero = map.mapa;
     dataUserMovements.tamUserHistory = 0;
     dataUserMovements.userMovements = [];
+    dataUserMovements.newUserPosition = -1;
+    bloquearBotonesHistorial();
     
 var tablero = Array.from(Array(filas), () => new Array(columnas));
 let identificador = 0;
