@@ -1,0 +1,91 @@
+{
+    "maps": [
+
+        {
+            "nombre": "Nivel 1",
+            "filas": 3,
+            "columnas": 3,
+            "min_mov": 4,
+            "mapa": [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ]
+        },
+        {
+            "nombre": "Nivel 2",
+            "filas": 3,
+            "columnas": 3,
+            "min_mov": 4,
+            "mapa": [
+                [0, 0, 0],
+                [0, 1, 0],
+                [0, 0, 0]
+            ]
+        },
+        {
+            "nombre": "Nivel 3",
+            "filas": 4,
+            "columnas": 4,
+            "min_mov": 4,
+            "mapa": [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]
+            ]
+        },
+        {
+            "nombre": "Nivel 4",
+            "filas": 4,
+            "columnas": 4,
+            "min_mov": 4,
+            "mapa": [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [2, 0, 0, 0]
+            ]
+        },
+        {
+            "nombre": "nivel 5",
+            "filas": 3,
+            "columnas": 3,
+            "min_mov": 6,
+            "mapa": [
+                [0, 0, 0],
+                [0, 0, 0],
+                [2, 0, 0]
+            ]
+        },
+        {
+            "nombre": "nivel 6",
+            "filas": 4,
+            "columnas": 6,
+            "min_mov": 6,
+            "verificado": true,
+            "mapa": [
+                [0, 0, 0, 2, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 2, 0, 0, 0, 0],
+                [0, 2, 0, 0, 0, 0]
+            ]
+        },
+        {
+            "nombre": "nivel 7",
+            "filas": 5,
+            "columnas": 5,
+            "min_mov": 6,
+            "verificado": true,
+            "mapa": [
+                [0, 1, 0, 1, 0],
+                [1, 0, 1, 0, 1],
+                [0, 1, 0, 1, 0],
+                [1, 0, 1, 0, 1],
+                [0, 1, 0, 1, 0]
+            ]
+        }
+
+    ]
+
+}

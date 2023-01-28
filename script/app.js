@@ -1,135 +1,135 @@
 "use strict";
-import { generateUniqueCasilla } from "./ObjectCasilla.js";
+export { tablero, dataUserMovements, filas, columnas };
+import { generarDefaultTablero } from "./tablero/generarTablero.js";
+import { limpiarTablero, cambiarDatosTablero } from "./tablero/manipularTablero.js";
+import { bloquearBotonesHistorial, comprobarSobrescribirDatosHistoricos } from "./tablero/historyMovementsUser.js";
 
-const filas = 7;
-const columnas = 1;
-const Eltablero = document.querySelector("#tablero");
-
-//Creamos el tablero de juego
-var tablero = Array.from(Array(filas), () => new Array(columnas));
-let identificador = 0;
-for (let i = 0; i < filas; i++) {
-    for (let j = 0; j < columnas; j++) {
-        //creamos un objeto dentro de cada casilla:
-        const data = generateUniqueCasilla(identificador, i, j)
-        tablero[i][j] = data;
-        var cas = document.createElement("div");
-        cas.className = "casilla";
-        cas.id = identificador;
-        identificador++;
-        cas.textContent = `${tablero[i][j].valorCasilla}`
-        Eltablero.appendChild(cas);
-        //Arriba
-        if (i == 0) {
-            cas.style.borderTop = '4px solid black';
-        }
-        //Abajo
-        if (i == filas - 1) {
-            cas.style.borderBottom = '4px solid black';
-        }
-        //izquierda
-        if (j == 0) {
-            cas.style.borderLeft = '4px solid black';
-
-        }
-        //derecha
-        if (j == columnas - 1) {
-            cas.style.borderRight = '4px solid black';
-
-        }
+//función asincrona, obtenemos el json con TODOS los mapas de la aplicación.
+const getData = async () => {
+    try {
+        const response = await fetch('script/lvls_maps/maps.json');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
     }
 }
-console.log(tablero)
-Eltablero.style.gridTemplateColumns = `repeat(${columnas}, auto)`;
 
-const casTablero = document.querySelectorAll(".casilla");
-casTablero.forEach(casilla => {
-    casilla.addEventListener("click",
-        () => {
-            let idTmp = casilla.id
-            //devuelve el ID de la ficha que hace click el usuario. 
-            //Este valor ID podemos buscarlo en el array para conocer su ubicacion
-          buscadorCasillaPorID(idTmp);
-          cambiarDatosTablero(posFil, posCol);
-          pintarDatosTablero();
-          
-        }
-    )
-});
+let loadData = await getData();
+let lvlMap = 1;
+if (lvlMap > loadData.maps.length) {
+    lvlMap = loadData.maps.length - 1;
+}
+let mapaActual = loadData.maps[lvlMap];
+let filas = mapaActual.filas;
+let columnas = mapaActual.columnas;
+
+//datos de almacenamiento movimientos del usuario
+var dataUserMovements = {
+    userMovements: [], //historial de coordenadas que el usuario clickea
+    tamUserHistory: 0, //tamaño del historial || numero de movimientos que ha hecho
+    newUserPosition: -1, // posicion del historial en la que nos queremos posicionar
+};
+
+/**
+ * Genera un tablero 
+ * Sus dimensiones vienen dadas por las variables: filas y columnas.
+ */
+const Eltablero = document.querySelector("#tablero");
+var tablero = generarDefaultTablero(Eltablero, mapaActual);
+
+
+/**
+ * Detecta los clicks del usuario en el tablero
+ * Carga informacion del historial de movimientos en dataUserMovements
+ */
+
+const clickTablero = () => {
+    const casTablero = document.querySelectorAll(".casilla");
+    casTablero.forEach(casilla => {
+        casilla.addEventListener("click",
+            () => {
+                let idTmp = casilla.id
+                //devuelve el ID de la ficha que hace click el usuario. 
+                //Este valor ID podemos buscarlo en el array para conocer su ubicacion
+                
+
+                buscadorCasillaPorID(idTmp);
+                if (vCasilla != 2) {
+                    dataUserMovements.userMovements.push([posFil, posCol]);
+                    dataUserMovements.tamUserHistory = dataUserMovements.userMovements.length;
+                    dataUserMovements.newUserPosition++;
+                    bloquearBotonesHistorial();
+                    cambiarDatosTablero(posFil, posCol, filas, columnas);
+                    comprobarSobrescribirDatosHistoricos();
+                    console.log(dataUserMovements.userMovements,  "posicion del usuario:" ,dataUserMovements.newUserPosition);
+                }
+            }
+        )
+    });
+}
+
+clickTablero()
 
 let posFil;
 let posCol;
-let id;
+let vCasilla;
 
+
+/**
+ * @param {*} id String es el #id HTML que tiene cada elemento
+ * @returns devuelve posFila, posColumna, valorObjeto
+ */
 const buscadorCasillaPorID = (id) => {
     for (let i = 0; i < filas; i++) {
         for (let j = 0; j < columnas; j++) {
-            
-            if(tablero[i][j].idCasilla == id){
+
+            if (tablero[i][j].idCasilla == id) {
                 posFil = tablero[i][j].fila;
                 posCol = tablero[i][j].columna;
                 id = tablero[i][j].idCasilla;
-                //console.log("Casilla ID:" , id, "fila:" ,posFil, "Columna: " ,posCol);
-                
+                vCasilla = tablero[i][j].valorCasilla
                 return {
                     posFil,
                     posCol,
-                    id
+                    vCasilla
                 }
             }
         }
     }
 }
 
-const cambiarDatosTablero = (posFil, posCol) => {
-    const ficha = tablero[posFil][posCol];
-    //cambiamos las posiciones verticales
-    for(let vi = -1; vi <=1; vi++){
-        let posicionVertical = posFil - vi; // recorre posiciones verticales
-        if(posicionVertical >= 0 && posicionVertical < filas && posicionVertical != posFil){
-            if(tablero[posicionVertical][posCol].valorCasilla === 1){
-                tablero[posicionVertical][posCol].valorCasilla = 0;
-            }
-            else if(tablero[posicionVertical][posCol].valorCasilla === 0){
-                tablero[posicionVertical][posCol].valorCasilla = 1;
-            }
-            
-        }
-    }
-    //Cambiamos posiciones horizontales
-    for(let  hj= -1; hj <=1; hj++){
-        let posicionHorizontal= posCol - hj; // recorre posiciones horizontales
-        if(posicionHorizontal >= 0 && posicionHorizontal < columnas && posicionHorizontal != posCol){
-            if(tablero[posFil][posicionHorizontal].valorCasilla === 1){
-                tablero[posFil][posicionHorizontal].valorCasilla = 0;
-            }
-            else if(tablero[posFil][posicionHorizontal].valorCasilla === 0){
-                tablero[posFil][posicionHorizontal].valorCasilla = 1;
-            }
-        }
-    }
 
+const btnNext = document.querySelector(".btn-next-map");
+const btnBack = document.querySelector(".btn-back-map");
 
-    if(ficha.valorCasilla  === 0){
-        ficha.valorCasilla = 1;
-    }
-    else if(ficha.valorCasilla === 1){
-        ficha.valorCasilla = 0;
-    }
-    
-}
-
-const pintarDatosTablero = () => {
-    for (let i = 0; i < filas; i++) {
-        for (let j = 0; j < columnas; j++) {
-            let id = tablero[i][j].idCasilla;
-            document.getElementById(id).textContent = tablero[i][j].valorCasilla;
-            
-            if(tablero[i][j].valorCasilla === 1){
-                document.getElementById(`${tablero[i][j].idCasilla}`).classList.add("active");
-            }else{
-                document.getElementById(`${tablero[i][j].idCasilla}`).classList.remove("active");
-            }
+btnNext.addEventListener(
+    "click",
+    () => {
+        if (lvlMap < loadData.maps.length - 1) {
+            limpiarTablero(Eltablero);
+            lvlMap++;
+            mapaActual = loadData.maps[lvlMap];
+            filas = mapaActual.filas;
+            columnas = mapaActual.columnas;
+            tablero = generarDefaultTablero(Eltablero, mapaActual);
+            clickTablero();
         }
+
+    })
+
+btnBack.addEventListener(
+    "click",
+    () => {
+        if (lvlMap > 0) {
+            limpiarTablero(Eltablero);
+            lvlMap--;
+            mapaActual = loadData.maps[lvlMap];
+            filas = mapaActual.filas;
+            columnas = mapaActual.columnas;
+            tablero = generarDefaultTablero(Eltablero, mapaActual);
+            clickTablero()
+        }
+
     }
-}
+)
