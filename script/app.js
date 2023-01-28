@@ -2,7 +2,7 @@
 import { generateUniqueCasilla } from "./ObjectCasilla.js";
 
 const filas = 7;
-const columnas = 5;
+const columnas = 1;
 const Eltablero = document.querySelector("#tablero");
 
 //Creamos el tablero de juego
