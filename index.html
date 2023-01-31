@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style/general_componentes/menuPrincipal.css">
 </head>
 <body>
-
+<!-- Menu página -->
 <nav class="barra-navegacion-voltea2">
     <ul>
         <li> <a href="#">?</a></li>
@@ -18,18 +18,24 @@
         <li><a href="#">Ajustes</a></li>
     </ul>
 </nav>
+
+<!-- tablero -->
     <section class="component-tablero">
+        <h2 class="tablero-lvl-indicator">Nivel actual: <span>1</span></h2>
         <div id="tablero"></div>
         <div class="section-btn-mapa">
             <button class="btn-back-map">Anterior</button>
             <button class="btn-next-map">Siguiente</button>
         </div>
-        <!-- botones de los movimientos que ha hecho el usuario -->
-        <div class="section-btn-posicion">
-            <button class="btn-prev-mov">volver</button>
-            <button class="btn-next-move">siguiente</button>
-        </div>
     </section>
+
+    <!-- botones nivel -->
+    
+    <!-- botones de los movimientos que ha hecho el usuario -->
+    <div class="section-btn-posicion">
+        <button class="btn-prev-mov">volver</button>
+        <button class="btn-next-move">siguiente</button>
+    </div>
 </body>
 <script type="module" src="/script/app.js" defer></script>
 <script type="module" src="/script/tablero/historyMovementsUser.js" defer></script>
