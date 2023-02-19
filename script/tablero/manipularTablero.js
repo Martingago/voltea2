@@ -2,7 +2,10 @@
 import { tablero } from "../app.js";
 export { limpiarTablero, cambiarDatosTablero};
 
-
+/**
+ * Función que elimina todos los elementos hijos del tablero
+ * @param {*} Eltablero Se introduce el elemento HTML tablero
+ */
 const limpiarTablero = (Eltablero) => {  
     while(Eltablero.firstChild){
         Eltablero.removeChild(Eltablero.firstChild);
