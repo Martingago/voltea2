@@ -3,6 +3,7 @@
 
         {
             "nombre": "Nivel 1",
+            "lvl_number": 1,
             "filas": 3,
             "columnas": 3,
             "min_mov": 4,
@@ -14,6 +15,7 @@
         },
         {
             "nombre": "Nivel 2",
+            "lvl_number": 2,
             "filas": 3,
             "columnas": 3,
             "min_mov": 4,
@@ -25,6 +27,7 @@
         },
         {
             "nombre": "Nivel 3",
+            "lvl_number": 3,
             "filas": 4,
             "columnas": 4,
             "min_mov": 4,
@@ -37,6 +40,7 @@
         },
         {
             "nombre": "Nivel 4",
+            "lvl_number": 4,
             "filas": 4,
             "columnas": 4,
             "min_mov": 4,
@@ -49,6 +53,7 @@
         },
         {
             "nombre": "nivel 5",
+            "lvl_number": 5,
             "filas": 3,
             "columnas": 3,
             "min_mov": 6,
@@ -60,6 +65,7 @@
         },
         {
             "nombre": "nivel 6",
+            "lvl_number": 6,
             "filas": 4,
             "columnas": 6,
             "min_mov": 6,
@@ -73,6 +79,7 @@
         },
         {
             "nombre": "nivel 7",
+            "lvl_number": 7,
             "filas": 5,
             "columnas": 5,
             "min_mov": 6,

@@ -1,0 +1,13 @@
+.section-btn-mapa{
+    display: grid;
+    gap: .5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+}
+
+.selector-btn-map{
+    display: flex;
+    justify-content: space-between;
+}

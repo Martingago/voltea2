@@ -8,11 +8,13 @@ export {generarDefaultTablero};
  * @param {*} map Array de 2 dimensiones, contiene los datos de cada casilla
  * @returns devuelve un array de 2 dimensiones con un objeto DATA
  */
+const outputLvlTablero = document.querySelector(".lvl-indicator");
 
 const generarDefaultTablero = (Eltablero, map) => {
     const filas = map.filas;
     const columnas = map.columnas;
     const dataTablero = map.mapa;
+    outputLvlTablero.textContent = `${map.lvl_number}`;
     dataUserMovements.tamUserHistory = 0;
     dataUserMovements.userMovements = [];
     dataUserMovements.newUserPosition = -1;
@@ -33,7 +35,7 @@ for (let i = 0; i < filas; i++) { // valor i representa las filas
         cas.className = "casilla";
         cas.id = identificador;
         identificador++;  
-        cas.textContent = `${tablero[i][j].valorCasilla}`;
+        //cas.textContent = `${tablero[i][j].valorCasilla}`;
         Eltablero.appendChild(cas);
         //pintamos la casilla atendiendo al valor que tenga en su interior
         drawCasillaData(data);

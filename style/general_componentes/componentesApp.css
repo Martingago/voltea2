@@ -1,0 +1,15 @@
+.--button-app-design {
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: rgb(11,139,221);
+    cursor: pointer;
+    color: white;
+    transition: background-color .2s linear;
+}
+.--button-app-design:hover{
+    background-color: rgb(173,25,241);
+}

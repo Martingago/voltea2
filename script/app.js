@@ -100,6 +100,7 @@ const buscadorCasillaPorID = (id) => {
 const btnNext = document.querySelector(".btn-next-map");
 const btnBack = document.querySelector(".btn-back-map");
 
+
 btnNext.addEventListener(
     "click",
     () => {

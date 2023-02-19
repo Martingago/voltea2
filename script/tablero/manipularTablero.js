@@ -38,12 +38,12 @@ const manipulateValorCasilla = (casilla) => {
         case 0:
             casilla.valorCasilla = 1;
             cas.classList.add("active");
-            cas.textContent = `${casilla.valorCasilla}`;
+            //cas.textContent = `${casilla.valorCasilla}`;
             break;
         case 1:
             casilla.valorCasilla = 0;
             cas.classList.remove("active");
-            cas.textContent = `${casilla.valorCasilla}`;
+            //cas.textContent = `${casilla.valorCasilla}`;
             break;
         case 2:
             casilla.valorCasilla = 2;

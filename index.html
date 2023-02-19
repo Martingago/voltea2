@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/tablero.css">
     <link rel="stylesheet" href="style/general_componentes/menuPrincipal.css">
+    <link rel="stylesheet" href="style/general.css">
+    <link rel="stylesheet" href="style/general_componentes/componentesApp.css">
+    <link rel="stylesheet" href="style/general_componentes/menuMapas.css">
 </head>
 <body>
+    <span class="background-web-color"></span>
 <!-- Menu página -->
 <nav class="barra-navegacion-voltea2">
     <ul>
@@ -21,11 +25,16 @@
 
 <!-- tablero -->
     <section class="component-tablero">
-        <h2 class="tablero-lvl-indicator">Nivel actual: <span>1</span></h2>
-        <div id="tablero"></div>
+        <h2 class="tablero-lvl-indicator">Nivel actual: <span class="lvl-indicator">1</span></h2>
+        <container class="contenedor-tablero">
+            <div id="tablero"></div>
+        </container>
         <div class="section-btn-mapa">
-            <button class="btn-back-map">Anterior</button>
-            <button class="btn-next-map">Siguiente</button>
+            <p>Cambiar de nivel</p>
+            <span class="selector-btn-map">
+                <button class="btn-back-map --button-app-design">Anterior</button>
+                <button class="btn-next-map --button-app-design">Siguiente</button>
+            </span>
         </div>
     </section>
 
@@ -33,8 +42,9 @@
     
     <!-- botones de los movimientos que ha hecho el usuario -->
     <div class="section-btn-posicion">
-        <button class="btn-prev-mov">volver</button>
-        <button class="btn-next-move">siguiente</button>
+        
+        <button class="btn-prev-mov --button-app-design">volver</button>
+        <button class="btn-next-move --button-app-design">siguiente</button>
     </div>
 </body>
 <script type="module" src="/script/app.js" defer></script>
