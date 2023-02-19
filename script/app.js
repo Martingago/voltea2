@@ -2,7 +2,7 @@
 export { tablero, dataUserMovements, filas, columnas };
 import { generarDefaultTablero } from "./tablero/generarTablero.js";
 import { limpiarTablero, cambiarDatosTablero } from "./tablero/manipularTablero.js";
-import { bloquearBotonesHistorial, comprobarSobrescribirDatosHistoricos } from "./tablero/historyMovementsUser.js";
+import { bloquearBotonesHistorial, cargarDatosHistorial, comprobarSobrescribirDatosHistoricos } from "./tablero/historyMovementsUser.js";
 
 //función asincrona, obtenemos el json con TODOS los mapas de la aplicación.
 const getData = async () => {
@@ -49,21 +49,18 @@ const clickTablero = () => {
     casTablero.forEach(casilla => {
         casilla.addEventListener("click",
             () => {
+                
                 let idTmp = casilla.id
                 //devuelve el ID de la ficha que hace click el usuario. 
                 //Este valor ID podemos buscarlo en el array para conocer su ubicacion
                 
-
                 buscadorCasillaPorID(idTmp);
                 if (vCasilla != 2) {
-                    dataUserMovements.userMovements.push([posFil, posCol]);
-                    dataUserMovements.tamUserHistory = dataUserMovements.userMovements.length;
-                    dataUserMovements.newUserPosition++;
-                    bloquearBotonesHistorial();
-                    cambiarDatosTablero(posFil, posCol, filas, columnas);
+                    cargarDatosHistorial(posFil, posCol); //cargamos en el historial de movimientos el ultimo dato introducido   
                     comprobarSobrescribirDatosHistoricos();
-                    console.log(dataUserMovements.userMovements,  "posicion del usuario:" ,dataUserMovements.newUserPosition);
+                    cambiarDatosTablero(posFil, posCol, filas, columnas);   
                 }
+                bloquearBotonesHistorial(); //con cada click comprueba si hay que bloquear elementos o no
             }
         )
     });
