@@ -40,6 +40,7 @@ for (let i = 0; i < filas; i++) { // valor i representa las filas
         //Arriba
         if (i == 0) {
             cas.style.borderTop = '4px solid black';
+            
         }
         //Abajo
         if (i == filas - 1) {

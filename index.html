@@ -5,16 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/tablero.css">
+    <link rel="stylesheet" href="style/general_componentes/menuPrincipal.css">
 </head>
 <body>
-    <div id="tablero"></div>
+<!-- Menu página -->
+<nav class="barra-navegacion-voltea2">
+    <ul>
+        <li> <a href="#">?</a></li>
+        <li><p>Voltea2</p></li>
+        <li><a href="#">Ajustes</a></li>
+    </ul>
+</nav>
 
-    <div class="section-btn-mapa">
-        <button class="btn-back-map">Anterior</button>
-        <button class="btn-next-map">Siguiente</button>
-    </div>
+<!-- tablero -->
+    <section class="component-tablero">
+        <h2 class="tablero-lvl-indicator">Nivel actual: <span>1</span></h2>
+        <div id="tablero"></div>
+        <div class="section-btn-mapa">
+            <button class="btn-back-map">Anterior</button>
+            <button class="btn-next-map">Siguiente</button>
+        </div>
+    </section>
 
+    <!-- botones nivel -->
+    
     <!-- botones de los movimientos que ha hecho el usuario -->
     <div class="section-btn-posicion">
         <button class="btn-prev-mov">volver</button>
