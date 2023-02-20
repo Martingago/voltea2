@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/tablero.css">
     <link rel="stylesheet" href="style/general_componentes/menuPrincipal.css">
     <link rel="stylesheet" href="style/general.css">
     <link rel="stylesheet" href="style/general_componentes/componentesApp.css">
     <link rel="stylesheet" href="style/general_componentes/menuMapas.css">
+    <link rel="stylesheet" href="style/general_componentes/windowModal.css">
 </head>
 <body>
     <span class="background-web-color"></span>
@@ -45,7 +47,20 @@
         
         <button class="btn-prev-mov --button-app-design">volver</button>
         <button class="btn-next-move --button-app-design">siguiente</button>
+        <button class="btn-reset-lvl --button-app-design">Reiniciar</button>
     </div>
+
+    <div class="modal-reset-lvl">
+        <container class="window-modal">
+            <button class="btn-close-modal --button-close-app-design"><i class="fa-solid fa-xmark"></i></button>
+            <p>¿Seguro que quieres reiniciar el nivel?</p>
+            <span>
+                <button class="btn-cancel-reset-lvl --button-app-design">No</button>
+                <button class="btn-confirm-reset-lvl --button-app-design">Si</button>
+            </span>
+        </container>  
+    </div>
+
 </body>
 <script type="module" src="/script/app.js" defer></script>
 <script type="module" src="/script/tablero/historyMovementsUser.js" defer></script>

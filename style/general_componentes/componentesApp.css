@@ -9,7 +9,18 @@
     cursor: pointer;
     color: white;
     transition: background-color .2s linear;
+    outline: none;
 }
 .--button-app-design:hover{
     background-color: rgb(173,25,241);
+}
+
+.--button-close-app-design{
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: none;
+}
+.--button-close-app-design:hover{
+    cursor: pointer;
 }

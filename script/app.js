@@ -3,6 +3,7 @@ export { tablero, dataUserMovements, filas, columnas };
 import { generarDefaultTablero } from "./tablero/generarTablero.js";
 import { limpiarTablero, cambiarDatosTablero } from "./tablero/manipularTablero.js";
 import { bloquearBotonesHistorial, cargarDatosHistorial, comprobarSobrescribirDatosHistoricos } from "./tablero/historyMovementsUser.js";
+import { abrirModal, cerrarModal } from "./tablero/ventanaModal.js";
 
 //función asincrona, obtenemos el json con TODOS los mapas de la aplicación.
 const getData = async () => {
@@ -49,16 +50,16 @@ const clickTablero = () => {
     casTablero.forEach(casilla => {
         casilla.addEventListener("click",
             () => {
-                
+
                 let idTmp = casilla.id
                 //devuelve el ID de la ficha que hace click el usuario. 
                 //Este valor ID podemos buscarlo en el array para conocer su ubicacion
-                
+
                 buscadorCasillaPorID(idTmp);
                 if (vCasilla != 2) {
                     cargarDatosHistorial(posFil, posCol); //cargamos en el historial de movimientos el ultimo dato introducido   
                     comprobarSobrescribirDatosHistoricos();
-                    cambiarDatosTablero(posFil, posCol, filas, columnas);   
+                    cambiarDatosTablero(posFil, posCol, filas, columnas);
                 }
                 bloquearBotonesHistorial(); //con cada click comprueba si hay que bloquear elementos o no
             }
@@ -99,6 +100,7 @@ const buscadorCasillaPorID = (id) => {
 
 const btnNext = document.querySelector(".btn-next-map");
 const btnBack = document.querySelector(".btn-back-map");
+const reiniciarLvl = document.querySelector(".btn-reset-lvl");
 
 
 btnNext.addEventListener(
@@ -129,5 +131,26 @@ btnBack.addEventListener(
             clickTablero()
         }
 
+    }
+)
+
+/**
+ * Reinicia un nivel
+ */
+
+reiniciarLvl.addEventListener("click",
+    () => {
+        abrirModal()
+    });
+
+document.querySelector(".btn-confirm-reset-lvl").addEventListener("click",
+    () => {
+        cerrarModal();
+        limpiarTablero(Eltablero);
+        mapaActual = loadData.maps[lvlMap];
+        filas = mapaActual.filas;
+        columnas = mapaActual.columnas;
+        tablero = generarDefaultTablero(Eltablero, mapaActual);
+        clickTablero()
     }
 )

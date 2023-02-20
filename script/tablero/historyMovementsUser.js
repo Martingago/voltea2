@@ -5,6 +5,8 @@ import { cambiarDatosTablero } from "./manipularTablero.js";
 
 const btnPrevMov = document.querySelector(".btn-prev-mov");
 const btnNextMov = document.querySelector(".btn-next-move");
+
+
 let fila;
 let columna;
 
