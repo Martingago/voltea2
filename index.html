@@ -51,6 +51,8 @@
         <button class="btn-reset-lvl --button-app-design">Reiniciar</button>
     </div>
 
+
+<!-- Ventana modal confirmacion -->
     <div class="background-modal modal-reset-lvl">
         <container class="window-modal">
             <button class="btn-close-modal --button-close-app-design"><i class="fa-solid fa-xmark"></i></button>
@@ -65,38 +67,50 @@
     <!-- modal con los ajustes del usuario -->
     <div class="background-modal modal-controles-usuario">
         <container class="window-modal window-modal-shortcut">
-            <h2 class="configuracion-teclas-title">Configuración de teclas</h2>
 
-            <p class="configuracion-teclas-description">Configuración general:</p>
-            <div class="configuracion-rapida">
-                <p>Confirmación de seguridad para Reiniciar niveles: </p>
-                <select name="confirmacion_seguridad" id="confirmacion_seguridad">
-                    <option value="true">Activado</option>
-                    <option value="false">Desactivado</option>
-                </select>
-            </div>
-            <p class="configuracion-teclas-description">Ajustes de configuración de teclas rápidas: </p>
-    
-            <div class="configuracion-rapida">
-                <p>Reiniciar nivel: </p>
-                <button class="btn-asig-tecla">R</button>
-            </div>
-            
-            <div class="configuracion-rapida">
-                <p>Seleccionar nivel anterior:</p>
-                <button class="btn-asig-tecla">flech <br>izq</button>
-            </div>
-            <div class="configuracion-rapida">
-                <p>Seleccionar nivel siguiente:</p>
-                <button class="btn-asig-tecla">flech <br>der</button>
-            </div>
-            <div class="configuracion-rapida">
-                <p>Volver al movimiento anterior:</p>
-                <button class="btn-asig-tecla">A</button>
-            </div>
-            <div class="configuracion-rapida">
-                <p>Recuperar movimiento:</p>
-                <button class="btn-asig-tecla">D</button>
+            <section class="ajustes-globales">
+                <button class="btn-close-modal --button-close-app-design"><i class="fa-solid fa-xmark"></i></button>
+                <h2 class="configuracion-teclas-title">Configuración de teclas</h2>
+                <p class="configuracion-teclas-description">Configuración general:</p>
+                
+                <div class="configuracion-rapida">
+                    <p>Confirmación de seguridad para Reiniciar niveles: </p>
+                    <select name="confirmacion_seguridad" id="confirmacion_seguridad">
+                        <option value="true">Activado</option>
+                        <option value="false">Desactivado</option>
+                    </select>
+                </div>
+                <p class="configuracion-teclas-description">Ajustes de configuración de teclas rápidas: </p>
+                <div class="configuracion-rapida">
+                    <p>Reiniciar nivel: </p>
+                    <button class="btn-asig-tecla">R</button>
+                </div>
+                
+                <div class="configuracion-rapida">
+                    <p>Seleccionar nivel anterior:</p>
+                    <button class="btn-asig-tecla">flech <br>izq</button>
+                </div>
+                <div class="configuracion-rapida">
+                    <p>Seleccionar nivel siguiente:</p>
+                    <button class="btn-asig-tecla">flech <br>der</button>
+                </div>
+                <div class="configuracion-rapida">
+                    <p>Volver al movimiento anterior:</p>
+                    <button class="btn-asig-tecla">A</button>
+                </div>
+                <div class="configuracion-rapida">
+                    <p>Recuperar movimiento:</p>
+                    <button class="btn-asig-tecla">D</button>
+                </div>
+                <div class="configuracion-rapida">
+                    <p>Restablecer todos los parámetros: </p>
+                    <button id="btn-restablecer-config">Restablecer</button>
+                </div>
+            </section>
+
+            <div class="configuracion-rapida-buttons">
+                <button class="--button-app-design">Confirmar</button>
+                <button class="--button-app-design">Cancelar</button>
             </div>
         </container>
     </div>

@@ -1,7 +1,6 @@
 .background-modal{
     position: fixed;
     display: none;
-    align-self: center;
     justify-content: center;
     align-items: center;
     top: 0;
@@ -15,7 +14,7 @@
 .window-modal{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
     position: relative;

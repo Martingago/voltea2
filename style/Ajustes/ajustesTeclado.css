@@ -1,15 +1,25 @@
 
 .modal-controles-usuario{
-    display: none;
+    display: flex;
     
 }
 
 .window-modal-shortcut{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
     width: 80%;
     height: 90%;
     overflow: hidden;
-    justify-content: flex-start;
+    align-items: flex-start;
     gap: 0.75rem;
+}
+.ajustes-globales{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .configuracion-teclas-title{
@@ -28,6 +38,7 @@
 
 .configuracion-rapida{
     display: grid;
+    position: relative;
     grid-template-columns: 1fr auto;
     height: 56px;
     width: 80%;
@@ -36,17 +47,31 @@
     background-color: rgba(230,230,230, .4);
     padding: .5rem;
     border-radius: 5px;
+    transition: background-color .3s linear;
 }
-.btn-asig-tecla{
+.configuracion-rapida-buttons{
+    height: max-content;
+    align-items: flex-end;
+    width: 80%;
+    max-width: 900px;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: auto;
+    
+}
+
+.btn-asig-tecla, #btn-restablecer-config{
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 600;
     font-size: .9rem;
-    width: 40px;
+    width: 100px;
     height: 40px;
     border-radius: 4px;
     outline: none;
+    cursor:  pointer;
 }
 
 #confirmacion_seguridad{
@@ -66,4 +91,35 @@
     margin: 0;
 }
 
+.activo{
+    background-color: rgb(192, 192, 192);
+}
 
+.activo .btn-asig-tecla{
+    color: black;
+    animation: texto-parpadeante 1.5s ease-in-out infinite;;
+}
+
+@keyframes texto-parpadeante {
+    0% {
+        color: black;
+      }
+      50% {
+        color:transparent
+      }
+      100% {
+        color: black
+      }
+}
+
+.extension-info{
+    width: 120px;
+    position: absolute;
+    padding: .25rem;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+    border: 1px solid black;
+    background-color: rgba(230,230,230, .4);
+    z-index: 999;
+}

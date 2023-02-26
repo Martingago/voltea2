@@ -154,3 +154,79 @@ document.querySelector(".btn-confirm-reset-lvl").addEventListener("click",
         clickTablero()
     }
 )
+
+
+/**
+ * configuracion botones usuario
+ * 
+ */
+
+
+let elementoActivo = null;
+
+const configuracionRapidaElements = document.querySelectorAll('.configuracion-rapida');
+
+configuracionRapidaElements.forEach(element => {
+    const btnAsignTecla = element.querySelector('.btn-asig-tecla');
+
+    if (btnAsignTecla) {
+        btnAsignTecla.addEventListener('click', () => {
+            if (!elementoActivo) {
+                elementoActivo = element;
+                // createNotificationUser(elementoActivo);
+                asignarTecla(event, elementoActivo);
+                
+            }
+        });
+    }
+});
+
+const asignarTecla = (event, configuracionRapida) => {
+    configuracionRapida.classList.add('activo');
+
+    // Funcion que nos permite escuchar la nueva tecla para asignar del usuario
+    const  listenerTecla = (event) => {
+        configuracionRapida.querySelector('.btn-asig-tecla').innerText = event.key.toUpperCase();
+        configuracionRapida.classList.remove('activo');
+        document.removeEventListener('keydown', listenerTecla);
+        // eliminarNotificationUser(elementoActivo)
+        elementoActivo = null;
+      }
+  
+    // detectamos pulsación de tecla
+    document.addEventListener('keydown', listenerTecla);
+
+    const listenerClick = (event) => {
+        // Si el usuario hace click fuera del elemento cancelamos el proceso de asignacion de tecla
+        if (!configuracionRapida.contains(event.target)) {
+            // eliminamos la clase activa, la deteccion de input, y la deteccion del click, elementoActivo vuelve a ser null
+            configuracionRapida.classList.remove("activo");
+            document.removeEventListener("keydown", listenerTecla);
+            document.removeEventListener("click", listenerClick);
+            // eliminarNotificationUser(elementoActivo)
+            elementoActivo = null;
+        }
+    };
+    
+    document.addEventListener("click", listenerClick);
+    
+  };
+
+// crea un modal avisando al usuario cuando cambia tecla  
+  const createNotificationUser = (elementoActivo) => {
+    const notificacionUsuario = document.createElement('div');
+    notificacionUsuario.classList.add('extension-info');
+    notificacionUsuario.textContent= 'Pulsa cualquier tecla';
+    elementoActivo.appendChild(notificacionUsuario);
+  }
+//   elimina el modal
+const eliminarNotificationUser = (elementoActivo) => {
+    const extension = elementoActivo.querySelector('.extension-info');
+    elementoActivo.removeChild(extension);
+}
+
+
+
+
+
+
